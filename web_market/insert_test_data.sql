@@ -32,7 +32,8 @@ INSERT INTO catalog_shop VALUES
   (2, "Electro-shop", "Moscow Tverskaja Street 18", 3.25, 0, '+7(495)345-2332', "5 дней, бесплатно", "https://electro-shop.com"),
   (3, "Pleer.ru", "Moscow Levoberejnaja naberezhnaja 1", 3.77, 1,'8-495-456-1111', '1-3 дня, 200-400р', 'https://pleer-pleer.ru');
 
-INSERT or IGNORE INTO catalog_salevariant (id, product_id_id, shop_id_id, price, amount, special_parameters, url) VALUES
+--INSERT or IGNORE INTO catalog_salevariant (id, product_id, shop_id, price, amount, special_parameters, url) VALUES
+INSERT INTO catalog_salevariant (id, product_id, shop_id, price, amount, special_parameters, url) VALUES
   --PC:
   (1, 1, 1, 19000.00, 100, "{}", "https://euroset.ru/catalog/phones/smartphones/apple/-/apple-iphone-7-128gb-chernij"),
   (2, 1, 2, 19500.00, 2, "{}", "https://euroset.ru/catalog/phones/smartphones/apple/-/apple-iphone-7-128gb-chernij"),

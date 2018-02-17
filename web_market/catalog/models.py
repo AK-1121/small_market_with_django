@@ -47,8 +47,8 @@ class Shop(models.Model):
 class SaleVariant(models.Model):
     # product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
     # shop_id = models.ForeignKey('Shop', on_delete=models.CASCADE)
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
-    shop = models.OneToOneField(Shop, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     amount = models.IntegerField(default=0)
     special_parameters = models.CharField(max_length=3000, default='{}')

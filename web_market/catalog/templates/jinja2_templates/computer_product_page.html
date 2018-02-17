@@ -2,7 +2,10 @@
 {% block content %}
 <table style="width:100%">
     <tr>
-        <td><img src="{{ image_link }}"></td>
+        <td>
+            <img src="{{ image_link }}">
+            <img src="{{ STATIC_URL }} 'images_of_products/laptop0003.jpg' ">
+        </td>
         <td>
             <b>Характеристики товара:</b>
             <ul>
@@ -35,7 +38,7 @@
     <tr>
         <td style="width:32%"><b>{{sale_variant.shop.name}}</b><br>
             Рейтинг: {{ sale_variant.shop.raiting }}<br>
-            Телефон: {{ sale_variant.shop.phone}}<br>
+            Телефон: {{ sale_variant.shop.phones}}<br>
         </td>
         <td style="width:32%">
             Доставка: {{ sale_variant.shop.delivery_conditions}}<br>

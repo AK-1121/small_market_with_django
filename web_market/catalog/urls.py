@@ -1,4 +1,6 @@
 from django.urls import path, re_path
+from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
+from django.conf import settings
 
 from . import views
 
@@ -10,4 +12,11 @@ urlpatterns = [
     path('product/<int:pk>/', views.show_product, name='product_page'),
     # Redirect to slash page (for cases when APPEND_SLASH will be switched off):
     re_path('^(?P<request_url>.*[^\/])$', views.WithoutSlashRedirectView.as_view()),
-]
+
+    # static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + staticfiles_urlpatterns()
+
+# if settings.DEBUG:
+#     urlpatterns += [
+#         static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#     ]

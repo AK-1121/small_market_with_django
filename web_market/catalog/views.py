@@ -8,6 +8,7 @@ from django.core import serializers
 from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.conf import settings
 
 
 from .models import Product, ProductType, SaleVariant, SubProductType
@@ -47,21 +48,21 @@ class ProductsListView(ListView):
         return context
 
 
-class ProductView(DetailView):
-    # template_name = 'product_page_test.html'
-    template_name = 'jinja2_templates/computer_product_page.html'
-    model = Product
-
-    def get_context_data(self, **kwargs):
-        context = super(ProductView, self).get_context_data(**kwargs)
-        context['top_types'] = ProductType.objects.all()[:7]
-        # context['prod_info'] = Product.objects.get(id=self.kwargs['product_id'])
-        context['sale_variants'] = SaleVariant.objects.filter(product_id=self.kwargs['pk'])
-        prod_info = json.loads(context['object'].parameters)
-        context['prod_info'] = prod_info
-        print(u"XX76: {}".format(dir(context['object'])))
-        print(u"XX77: {}".format(context['prod_info']))
-        return context
+# class ProductView(DetailView):
+#     # template_name = 'product_page_test.html'
+#     template_name = 'jinja2_templates/computer_product_page.html'
+#     model = Product
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(ProductView, self).get_context_data(**kwargs)
+#         context['top_types'] = ProductType.objects.all()[:7]
+#         # context['prod_info'] = Product.objects.get(id=self.kwargs['product_id'])
+#         context['sale_variants'] = SaleVariant.objects.filter(product_id=self.kwargs['pk'])
+#         prod_info = json.loads(context['object'].parameters)
+#         context['prod_info'] = prod_info
+#         print(u"XX76: {}".format(dir(context['object'])))
+#         print(u"XX77: {}".format(context['prod_info']))
+#         return context
 
 
 def _get_product_template_name(sub_type_id, prod_template_dir='jinja2'):
@@ -86,14 +87,25 @@ def show_product(request, pk):
     sale_variants = SaleVariant.objects.filter(product_id=pk)
     prod_info = json.loads(product.parameters)
     template_name = _get_product_template_name(product.sub_type_id)
-    # template_name = 'product_page.html'
+
+    if sale_variants:
+        all_prices = [variant.price for variant in sale_variants]
+        average_price = round(sum(all_prices) / len(all_prices), 2)
+    else:
+        average_price = '-'
+    # image_link = os.path.join(settings.MEDIA_ROOT, 'images_of_products', product.image_url)
+    image_link = os.path.join(settings.STATIC_URL, 'images_of_products', product.image_url)
+
 
     return render(request, template_name,
                   context={
                       'product': product, 'prod_info': prod_info,
-                      'top_types': top_types, 'sale_variants': sale_variants
+                      'top_types': top_types, 'sale_variants': sale_variants,
+                      'average_price': average_price,
+                      'image_link': image_link
                   },
                   using='jinja2')
+
 
 class WithoutSlashRedirectView(RedirectView):
     permanent = True
