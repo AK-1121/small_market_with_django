@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<ul>
+    {% for element in all_types %}
+    <li>
+        <a href="sub_types_list/{{ element.id }}">{{ element.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% if not all_types %}
+    Этот элемент - пуст. <a href="/catalog">Вернуться</a>
+{% endif %}
+{% endblock %}

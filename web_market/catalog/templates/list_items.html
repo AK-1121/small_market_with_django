@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<ul>
+    {% for item in items %}
+    <li>
+        <a href="/{{item_link}}/{{ item.id}}/">{{ item.name }} </a>
+    </li>
+    {% endfor %}
+</ul>
+{% if not items %}
+    Этот элемент - пуст. <a href="/catalog">Вернуться</a>
+{% else %}
+    {% for instance in serial_data %}
+    {% for field, value in instance.fields.items %}
+        {{ field }}: {{ value }}
+    {% endfor %}
+{% endfor %}
+
+{% endif %}
+{% endblock %}

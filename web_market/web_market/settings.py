@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'catalog',
+    'web_market'
 ]
 
 MIDDLEWARE = [
@@ -53,8 +55,19 @@ ROOT_URLCONF = 'web_market.urls'
 
 TEMPLATES = [
     {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'catalog', 'templates/jinja2_templates'),
+            # '/Users/install/kuznetsov_files/study/otus_pfs/small_market_with_django/web_market/catalog/templates/jinja2_templates'
+        ],
+        'APP_DIRS': True,
+        # 'OPTIONS': {'environment': 'web_market.jinja2.Environment',},
+    },
+    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,7 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = 'web_market.wsgi.application'

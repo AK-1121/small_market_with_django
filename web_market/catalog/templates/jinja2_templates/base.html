@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    {#<link rel="stylesheet" href="style.css" />#}
+    <title>{% block title %}{% endblock %}</title>
+    <table style="width:100%">
+        <tr>
+            <th colspan="3"><a href="/catalog"><h2>М Маркет</h2></a></th>
+            <th colspan="5" ><input type="text" placeholder=""><button>Найти</button></th>
+            <th><a href="/my_town/">Москва</a></th>
+            <th><a href="/favorits/">Отложенные</a></th>
+            <th><a href="/compare/">Сравнение</a></th>
+            <th><a href="/cart/">Корзина</a></th>
+            <th><a href="/login/">Войти</a></th>
+        </tr>
+    </table>
+    <hr />
+    <table style="width:100%">
+        <tr>
+            {% for p_type in top_types %}
+            <td><a href="/catalog/sub_types_list/{{p_type.id}}">{{ p_type.name }}</a></td>
+            {% endfor %}
+        </tr>
+    </table>
+    {% endblock %}
+</head>
+<body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        {% endblock %}
+    </div>
+</body>
+</html>
