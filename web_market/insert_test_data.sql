@@ -17,7 +17,8 @@ INSERT INTO catalog_subproducttype (id, name, raiting, type_id_id, description) 
   (1, "Ноутбуки", 1211, 1, "Ноутбуки разных фирм и размеров"),
   (2, "Планшеты", 777, 1, "Планшеты всех модификаций"),
   (3, "Персональные компьютеры", 543, 1, "Различные варианты персональных компьютеров"),
-  (4, "Сетевое оборудование", 343, 1, "Свитчи, коммутаторы и прочее сетевое оборудование");
+  (4, "Сетевое оборудование", 343, 1, "Свитчи, коммутаторы и прочее сетевое оборудование"),
+  (11, "Холодильники", 632, 3,"");
 
 insert into catalog_product (id, sub_type_id, name, manufacture, raiting, image_url, parameters) values  -- computer_product_types: 3
   (1, 3, "IBM 280", "IBM", 4.8, "desktop0001.jpg", '{"cpu_number": 4, "graphics_card": "AMD Radeon 530", "hard_drive_type": "HDD", "weight": 3.221, "screen_resolution": 17.5, "cpu_model": "Core i5", "frequency": 2000, "hard_drive_size": "1500Gb"}'),
@@ -25,7 +26,8 @@ insert into catalog_product (id, sub_type_id, name, manufacture, raiting, image_
   (3, 3, "Zx12 RT", "Asus", 1.8, "desktop0003.jpg", '{"cpu_number": 4, "graphics_card": "AMD Radeon 530", "hard_drive_type": "HDD", "weight": 3.221, "screen_resolution": 17.5, "cpu_model": "Core i5", "frequency": 1400, "hard_drive_size": "2500Gb"}'),
   (4, 1, "Samsung 01", "Samsung", 4.2, "laptop0001.jpg", '{"cpu_number": 4, "graphics_card": "AMD Radeon 530", "hard_drive_type": "HDD", "weight": 3.221, "screen_resolution": 17.5, "cpu_model": "Core i5", "frequency": 2000, "hard_drive_size": "800Gb"}'),
   (5, 1, "Samsung 02", "Samsung", 3.2, "laptop0002.jpg", '{"cpu_number": 4, "graphics_card": "AMD Radeon 530", "hard_drive_type": "HDD", "weight": 3.221, "screen_resolution": 17.5, "cpu_model": "Core i5", "frequency": 2200, "hard_drive_size": "3500Gb"}'),
-  (6, 1, "RedRaptorX", "Asus", 1.8, "laptop0003.jpg", '{"cpu_number": 4, "graphics_card": "AMD Radeon 530", "hard_drive_type": "HDD", "weight": 3.221, "screen_resolution": 17.5, "cpu_model": "Core i5", "frequency": 1000, "hard_drive_size": "1500Gb"}');
+  (6, 1, "RedRaptorX", "Asus", 1.8, "laptop0003.jpg", '{"cpu_number": 4, "graphics_card": "AMD Radeon 530", "hard_drive_type": "HDD", "weight": 3.221, "screen_resolution": 17.5, "cpu_model": "Core i5", "frequency": 1000, "hard_drive_size": "1500Gb"}'),
+  (7, 11, "Бирюса 118", "Бирюса", 2.33, "refrigerator0001.jpg", '{"dimensions": "48x60.5x145 см", "number_of_sections": 2, "number_of_doors": 2, "efficiency": "класс А", "value_of_cold_store": 145, "value_of_freezer": 35, "weight": 52, "noise_level": "до 41 дБ"}');
 
 INSERT INTO catalog_shop VALUES
   (1, "Eldorado", "Moscow Golovlev Street 28", 4.2, 1, '+7-903-812-17-18', 'Завтра, 300р по Москве', 'https://eldorado1.ru'),

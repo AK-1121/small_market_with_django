@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<table style="width:100%">
+    <tr>
+        <td>
+            <img src="{{ image_link }}">
+
+        </td>
+        <td>
+            <b>Характеристики товара:</b>
+            <ul>
+                <li>Процессор: {{ prod_info.cpu_model }}</li>
+                <li>Количество ядер: {{ prod_info.cpu_number }}</li>
+                <li>Частота процессора: {{ prod_info.frequency }} МГц</li>
+                <li>Видеокарта: {{ prod_info.graphics_card }}</li>
+                <li>Жёсткий диск: {{ prod_info.hard_drive_size }} - {{ prod_info.hard_drive_type }}</li>
+                <li>Размер экрана: {{ prod_info.screen_resolution }}''</li>
+                <li>Вес: {{ prod_info.weight }} кг</li>
+                <li>DVD-RW: {{ prod_info.is_dwd }}</li>
+                <li>Bluetooth: {{ prod_info.is_bluetooth }}</li>
+            </ul>
+
+        </td>
+        <td>
+            <h2>{{ average_price }} P</h2>
+            <i>Рейтинг: {{ product.raiting }}</i>
+             <p>
+                 <button>В магазин</button>
+             </p>
+        </td>
+    </tr>
+</table>
+<table style="width:100%">
+    <tr>
+        <td colspan="4"><h3>Предложения магазинов</h3></td>
+    </tr>
+    {% for sale_variant in sale_variants %}
+    <tr>
+        <td style="width:32%"><b>{{sale_variant.shop.name}}</b><br>
+            Рейтинг: {{ sale_variant.shop.raiting }}<br>
+            Телефон: {{ sale_variant.shop.phones}}<br>
+        </td>
+        <td style="width:32%">
+            Доставка: {{ sale_variant.shop.delivery_conditions}}<br>
+            {{ sale_variant.shop.self_pickup|yesno:"Есть самовывоз,Нет самовывоза"}}
+        </td>
+        <td style="width:18%">
+            <h2>{{ sale_variant.price}} P</h2>
+        </td>
+        <td style="width:18%">
+            <form action="{{ sale_variant.url}}">
+                <input type="submit" value="В магазин" />
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

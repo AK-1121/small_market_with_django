@@ -4,16 +4,14 @@ from django.db import models
 # Create your models here.
 class ProductType(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    # raiting = models.DecimalField(max_digits=7, decimal_places=4)
     raiting = models.FloatField()
     description = models.TextField(default='')
 
 
 class SubProductType(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    # raiting = models.DecimalField(max_digits=7, decimal_places=4)
     raiting = models.FloatField()
-    type_id = models.ForeignKey('ProductType', on_delete=models.CASCADE)
+    type_id = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     description = models.TextField(default='')
 
 
@@ -21,9 +19,7 @@ class Product(models.Model):
     sub_type_id = models.IntegerField()
     name = models.CharField(max_length=200)
     manufacture = models.CharField(max_length=200)
-    # raiting = models.DecimalField(max_digits=4, decimal_places=2)
     raiting = models.FloatField()
-    # image_url = models.ImageField(upload_to='static/', height_field=300, width_field=400)
     image_url = models.URLField()
     parameters = models.CharField(max_length=3000)
 
@@ -45,8 +41,6 @@ class Shop(models.Model):
 
 
 class SaleVariant(models.Model):
-    # product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
-    # shop_id = models.ForeignKey('Shop', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=9, decimal_places=2)

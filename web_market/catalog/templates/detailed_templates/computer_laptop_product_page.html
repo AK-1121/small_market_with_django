@@ -4,20 +4,20 @@
     <tr>
         <td>
             <img src="{{ image_link }}">
-            <img src="{{ STATIC_URL }} 'images_of_products/laptop0003.jpg' ">
+
         </td>
         <td>
             <b>Характеристики товара:</b>
             <ul>
-                <li>Процессор: {{ prod_info.get('cpu_model', '-') }}</li>
-                <li>Количество ядер: {{ prod_info.get('cpu_number', '-') }}</li>
-                <li>Частота процессора: {{ prod_info.get('frequency', '-') }} МГц</li>
-                <li>Видеокарта: {{ prod_info.get('graphics_card', '-') }}</li>
-                <li>Жёсткий диск: {{ prod_info.get('hard_drive_size', '-') }} - {{ prod_info.get('hard_drive_type', '-') }}</li>
-                <li>Размер экрана: {{ prod_info.get('screen_resolution', '-') }}''</li>
-                <li>Вес: {{ prod_info.get('weight', '-') }} кг</li>
-                <li>DVD-RW: {{ prod_info.get('is_dwd', 'нет') }}</li>
-                <li>Bluetooth: {{ prod_info.get('is_bluetooth', 'нет') }}</li>
+                <li>Процессор: {{ prod_info.cpu_model }}</li>
+                <li>Количество ядер: {{ prod_info.cpu_number }}</li>
+                <li>Частота процессора: {{ prod_info.frequency }} МГц</li>
+                <li>Видеокарта: {{ prod_info.graphics_card }}</li>
+                <li>Жёсткий диск: {{ prod_info.hard_drive_size }} - {{ prod_info.hard_drive_type }}</li>
+                <li>Размер экрана: {{ prod_info.screen_resolution }}''</li>
+                <li>Вес: {{ prod_info.weight }} кг</li>
+                <li>DVD-RW: {{ prod_info.is_dwd }}</li>
+                <li>Bluetooth: {{ prod_info.is_bluetooth }}</li>
             </ul>
 
         </td>
@@ -42,7 +42,7 @@
         </td>
         <td style="width:32%">
             Доставка: {{ sale_variant.shop.delivery_conditions}}<br>
-            {{'Есть самовывоз' if sale_variant.shop.self_pickup else ''}}
+            {{ sale_variant.shop.self_pickup|yesno:"Есть самовывоз,Нет самовывоза"}}
         </td>
         <td style="width:18%">
             <h2>{{ sale_variant.price}} P</h2>

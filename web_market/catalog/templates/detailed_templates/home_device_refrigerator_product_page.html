@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<table style="width:100%">
+    <tr>
+        <td>
+            <img src="{{ image_link }}">
+
+        </td>
+        <td>
+            <b>Характеристики товара:</b>
+            <ul>
+                <li>Размеры: {{ prod_info.dimensions }}</li>
+                <li>Количество секций: {{ prod_info.number_of_sections }}</li>
+                <li>Количество дверей: {{ prod_info.number_of_doors }}</li>
+                <li>Энергоэффектиность: {{ prod_info.efficiency }}</li>
+                <li>Объем холодильной камеры: {{ prod_info.value_of_cold_store }} л</li>
+                <li>Объем морозильной камеры: {{ prod_info.value_of_freezer }} л</li>
+                <li>Вес: {{ prod_info.weight }} кг</li>
+                <li>Уровень шума: {{ prod_info.noise_level }}</li>
+                <li>Минимальная температура морозильной камеры: {{ prod_info.min_freezer_temperature }}</li>
+            </ul>
+
+        </td>
+        <td>
+            <h2>{{ average_price }} P</h2>
+            <i>Рейтинг: {{ product.raiting }}</i>
+             <p>
+                 <button>В магазин</button>
+             </p>
+        </td>
+    </tr>
+</table>
+<table style="width:100%">
+    <tr>
+        <td colspan="4"><h3>Предложения магазинов</h3></td>
+    </tr>
+    {% for sale_variant in sale_variants %}
+    <tr>
+        <td style="width:32%"><b>{{sale_variant.shop.name}}</b><br>
+            Рейтинг: {{ sale_variant.shop.raiting }}<br>
+            Телефон: {{ sale_variant.shop.phones}}<br>
+        </td>
+        <td style="width:32%">
+            Доставка: {{ sale_variant.shop.delivery_conditions}}<br>
+            {{ sale_variant.shop.self_pickup|yesno:"Есть самовывоз,Нет самовывоза"}}
+        </td>
+        <td style="width:18%">
+            <h2>{{ sale_variant.price}} P</h2>
+        </td>
+        <td style="width:18%">
+            <form action="{{ sale_variant.url}}">
+                <input type="submit" value="В магазин" />
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

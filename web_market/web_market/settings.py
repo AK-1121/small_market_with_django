@@ -14,8 +14,6 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
@@ -62,19 +60,8 @@ ROOT_URLCONF = 'web_market.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'catalog', 'templates/jinja2_templates'),
-            # '/Users/install/kuznetsov_files/study/otus_pfs/small_market_with_django/web_market/catalog/templates/jinja2_templates'
-        ],
-        'APP_DIRS': True,
-        # 'OPTIONS': {'environment': 'web_market.jinja2_env.environment'},
-    },
-    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            # os.path.join(BASE_DIR, 'templates')
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
